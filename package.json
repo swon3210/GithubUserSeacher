@@ -1,0 +1,25 @@
+{
+  "name": "GithubUserSeacher",
+  "version": "1.0.0",
+  "description": "application for searching github user ",
+  "main": "index.js",
+  "repository": "https://github.com/swon3210/GithubUserSeacher",
+  "author": "swon3210 <swon3210@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "build:dev": "cross-env NODE_ENV=development webpack",
+    "start": "cross-env NODE_ENV=development webpack serve"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.3",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0"
+  }
+}
