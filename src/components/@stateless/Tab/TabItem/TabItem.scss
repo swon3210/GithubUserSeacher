@@ -1,0 +1,15 @@
+@use '../../../../assets/scss/variables' as *;
+@use '../../../../assets/scss/mixins' as *;
+
+.tab-item {
+  flex-grow: 1;
+  color: $TextColor;
+  padding: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+
+  @include setTransition(opacity 0.5s, background-color 0.5s);
+
+  @include resetButton;
+  @include setBackgroundColorOnActive($SecondaryColor);
+}

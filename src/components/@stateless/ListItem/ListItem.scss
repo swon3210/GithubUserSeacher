@@ -1,0 +1,21 @@
+@use "../../../assets/scss/variables" as *;
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 12px;
+  padding: 14px;
+  background-color: $SecondaryColor;
+  box-shadow: 2px 4px 12px rgba($ShadowColor, 0.2);
+
+  &__left-content {
+    display: flex;
+    align-items: center;
+  }
+
+  &__thumbnail {
+    margin-right: 1rem;
+  }
+}

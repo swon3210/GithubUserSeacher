@@ -1,0 +1,15 @@
+@use '../../../../assets/scss/variables' as *;
+@use '../../../../assets/scss/mixins' as *;
+
+.tab-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  height: 100%;
+  background-color: $SecondaryColor;
+  border-bottom: 3px solid $AccentColor;
+  pointer-events: none;
+
+  @include setTransition(transform 0.5s);
+}

@@ -1,0 +1,13 @@
+@use "../../../assets/scss/variables" as *;
+
+.circle {
+  display: inline-block;
+  width: 2.4375rem;
+  height: 2.4375rem;
+  border-radius: 50%;
+  
+  background-color: $EmptyContentColor;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

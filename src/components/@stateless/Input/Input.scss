@@ -1,0 +1,12 @@
+@use "../../../assets/scss/mixins" as *;
+@use "../../../assets/scss/variables" as *;
+
+.input {
+  @include resetInput;
+  color: $TextColor;
+  padding: 0.875rem 1rem;
+
+  &::placeholder {
+    color: $TextColor;
+  }
+}
