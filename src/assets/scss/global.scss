@@ -1,0 +1,15 @@
+@use 'variables' as *;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: $AppBackgroundColor;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}

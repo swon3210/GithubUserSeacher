@@ -1,0 +1,14 @@
+@mixin resetButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@mixin resetInput {
+  background: none;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}

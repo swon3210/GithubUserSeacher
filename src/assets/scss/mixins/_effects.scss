@@ -1,0 +1,11 @@
+@mixin setBackgroundColorOnActive($backgroundColor) {
+  &:active {
+    background-color: $backgroundColor;
+  }
+}
+
+@mixin setBackgroundColorOnFocus($backgroundColor) {
+  &:focus {
+    background-color: $backgroundColor;
+  }
+}
