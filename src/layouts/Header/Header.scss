@@ -1,0 +1,8 @@
+@use "../../assets/scss/variables" as *;
+
+.header__title {
+  color: $TextColor;
+  font-size: 1.4375rem;
+  padding: 1.8rem 2.3125rem;
+  margin: 0;
+}
