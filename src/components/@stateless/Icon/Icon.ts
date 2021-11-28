@@ -8,6 +8,7 @@ interface Props {
 
 const DEFAULT_CLASS_NAME = "icon";
 
+/** Important : 아이콘을 이미지가 아닌 SVG 로 불러올 수 있게 해주는 함수입니다. */
 const Icon: Component<Props> = ({ componentId, className, iconType }) =>
   createComponent(
     {
@@ -17,7 +18,6 @@ const Icon: Component<Props> = ({ componentId, className, iconType }) =>
       componentId,
     },
     (element) => {
-      console.log("iconType : ", iconType);
       element.innerHTML = getSVG(getIcon(iconType));
 
       return element;

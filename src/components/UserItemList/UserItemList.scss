@@ -1,0 +1,25 @@
+@use "../../assets/scss/variables" as *;
+@use "../../assets/scss/mixins" as *;
+
+.user-item-list {
+  padding: 0;
+
+}
+
+.user-item {
+  cursor: pointer;
+  @include setTransition(background-color 0.5s);
+
+  @include setBackgroundColorOnActive($SecondaryColor);
+
+  &.marked {
+    path {
+      stroke: $AccentColor;
+      fill: $AccentColor;
+    }
+  }
+}
+
+.user-name-header-line {
+  margin-bottom: 1rem;
+}

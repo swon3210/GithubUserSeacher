@@ -4,4 +4,12 @@ export enum ErrorText {
   TAB_INDEX_OUT_OF_RANGE = "유효하지 않은 Tab Index 입니다",
   DUPLICATED_COMPONENT_ID = "중복된 component id 가 존재합니다.",
   HEADER_LINE_TEXT_SHOULD_BE_CHARACTER = "HeaderLine 의 텍스트는 한 글자여야 합니다.",
+  WRONG_USER_ITEM_CLICKED = "잘못된 유저 아이템이 클릭되었습니다.",
+  CANNOT_FIND_KOREAN_CONSONANT = "한글 초성을 찾을 수 없습니다.",
+  INVALID_USER_DATA_STRUCTURE = "올바르지 않은 유저 데이터 형식입니다.",
+  INVALID_USER_ITEM_COMPONENT = "올바르지 않은 유저 아이템 컴포넌트입니다.",
+  INVALID_MARKED_USER_ITEM_FOUND = "올바르지 않은 형식의 즐겨찾기 유저 데이터가 저장되어 있습니다.",
+  CANNOT_REMOVE_LOCAL_STORAGE_ITEM = "초기화 되지 않은 로컬스토리지 데이터에서 데이터를 삭제할 수 없습니다",
+  CANNOT_FIND_MARKED_USER_ITEM = "대상 즐겨찾기 된 유저 아이템을 찾을 수 없습니다.",
+  DUPLICATED_MARKED_USER_ITEM = "이미 중복된 즐겨찾기 유저 아이템이 존재합니다",
 }

@@ -1,32 +1,35 @@
 import { ErrorText } from "../../constants/error";
-import type { ComponentProps, Container } from "../../types";
+import type { Container } from "../../types";
 import {
   appendChildren,
   createComponent,
   delegateEvent,
 } from "../../utils/component";
 import TabIndicator from "../@stateless/Tab/TabIndicator/TabIndicator";
-import TabItem, {
-  Props as TabItemProps,
-} from "../@stateless/Tab/TabItem/TabItem";
+import TabItem from "../@stateless/Tab/TabItem/TabItem";
 
 import "./Tabs.scss";
 
-type TabItem = ComponentProps & TabItemProps;
-
 interface TabsContainer extends Container {}
+
+interface Props {
+  tabs: string[];
+  className?: string;
+  onTabChange?: (tabIndex: number) => void;
+}
 
 const DEFAULT_CLASS_NAME = "tabs";
 
 export default class Tabs implements TabsContainer {
   component: HTMLElement;
-  private $$tabs: HTMLElement[];
+  private $$tabItems: HTMLElement[];
   private $tabIndicator: HTMLElement;
   private tabIndex: number = 0;
-  private tabs: TabItem[];
+  private tabs: string[];
   private className?: string;
+  private onTabChange?: (tabIndex: number) => void;
 
-  constructor(tabs: TabItem[], className?: string) {
+  constructor({ tabs, className, onTabChange }: Props) {
     this.tabs = tabs;
     this.className = className;
     this.component = createComponent({
@@ -34,8 +37,14 @@ export default class Tabs implements TabsContainer {
       defaultClassName: DEFAULT_CLASS_NAME,
       className: this.className,
     });
+    this.onTabChange = onTabChange;
 
-    this.$$tabs = this.tabs.map((tab) => TabItem(tab));
+    this.$$tabItems = this.tabs.map((tab, index) =>
+      TabItem({
+        text: tab,
+        componentId: String(index),
+      })
+    );
     this.$tabIndicator = TabIndicator({
       tabItemCount: this.tabs.length,
     });
@@ -45,13 +54,13 @@ export default class Tabs implements TabsContainer {
   }
 
   private renderComponent() {
-    appendChildren(this.component, this.$$tabs);
+    appendChildren(this.component, this.$$tabItems);
     appendChildren(this.component, this.$tabIndicator);
   }
 
   private setEvents() {
     this.component.addEventListener("click", ({ target }) => {
-      this.$$tabs.forEach(($tab, index) => {
+      this.$$tabItems.forEach(($tab, index) => {
         const componentId = $tab.dataset.componentId;
 
         if (!componentId) {
@@ -60,7 +69,10 @@ export default class Tabs implements TabsContainer {
 
         delegateEvent(target, {
           componentId: componentId,
-          callback: () => this.changeTabIndex(index),
+          callback: () => {
+            this.changeTabIndex(index);
+            this.onTabChange && this.onTabChange(this.tabIndex);
+          },
         });
       });
     });

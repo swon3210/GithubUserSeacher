@@ -1,5 +1,4 @@
 import { ErrorText } from "../constants/error";
-import { addElementToStore } from "../store/elementStore";
 import { ComponentProps } from "../types";
 
 interface initialComponentProps extends ComponentProps {
@@ -12,6 +11,8 @@ interface eventDelegatorProps {
   callback: Function;
 }
 
+/** Important : stateless 컴포넌트를 만드는데 사용되는 메서드입니다. 두번째 인자로 함수를 받을 수 있게 해서
+ * element 를 createComponent 를 호출하는 측에서 구성할 수 있도록 신경썼습니다. */
 export const createComponent = <ElementType extends HTMLElement>(
   { tagType, componentId, defaultClassName, className }: initialComponentProps,
   callback?: (element: ElementType) => ElementType
@@ -45,7 +46,6 @@ export const initComponent = (
 
   if (componentId) {
     element.dataset.componentId = componentId;
-    addElementToStore(componentId, element);
   }
 
   element.className = `${defaultClassName} ${className}`;
@@ -55,12 +55,24 @@ export const delegateEvent = (
   target: Event["target"],
   { componentId, callback }: eventDelegatorProps
 ) => {
-  if (!(target instanceof HTMLElement)) {
+  if (!(target instanceof HTMLElement) && !(target instanceof SVGElement)) {
     throw Error(ErrorText.WRONG_EVENT_BINDING);
   }
 
   if (target.dataset.componentId === componentId) {
     callback();
+    return;
+  }
+
+  const $closest = target.closest(`[data-component-id="${componentId}"]`);
+
+  if (!($closest instanceof HTMLElement)) {
+    return;
+  }
+
+  if ($closest.dataset.componentId === componentId) {
+    callback();
+    return;
   }
 };
 
@@ -78,7 +90,7 @@ export const appendChildren = (
   });
 };
 
-/** 주의! inlineSVGText 는 웹팩의 url-loader 를 활용해서 가져온 svg 파일의 내용에 한합니다. */
+/** Important : 주의! inlineSVGText 는 웹팩의 url-loader 를 활용해서 가져온 svg 파일의 내용에 한합니다. */
 export const getSVG = (inlineSVGText: string) => {
   const SVG = inlineSVGText.replace("data:image/svg+xml,", "");
 
