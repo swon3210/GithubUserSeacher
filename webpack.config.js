@@ -17,7 +17,7 @@ module.exports = {
     path: path.resolve("./dist"),
     clean: true,
   },
-  devtool: isProduction ? "none" : "inline-source-map",
+  devtool: isProduction ? "eval" : "inline-source-map",
   module: {
     rules: [
       {
