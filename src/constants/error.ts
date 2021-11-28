@@ -12,4 +12,5 @@ export enum ErrorText {
   CANNOT_REMOVE_LOCAL_STORAGE_ITEM = "초기화 되지 않은 로컬스토리지 데이터에서 데이터를 삭제할 수 없습니다",
   CANNOT_FIND_MARKED_USER_ITEM = "대상 즐겨찾기 된 유저 아이템을 찾을 수 없습니다.",
   DUPLICATED_MARKED_USER_ITEM = "이미 중복된 즐겨찾기 유저 아이템이 존재합니다",
+  SEARCH_NAME_LENGTH_LIMIT_EXCEEDED = "검색 키워드의 길이는 100자를 넘을 수 없습니다",
 }

@@ -2,6 +2,7 @@ import SearchInputForm from "../../components/SearchInputForm/SearchInputForm";
 import Tabs from "../../components/Tabs/Tabs";
 import MarkedUserItemList from "../../components/UserItemList/MarkedUserItemList";
 import UserItemList from "../../components/UserItemList/UserItemList";
+import { ErrorText } from "../../constants/error";
 import { TABS } from "../../constants/layout";
 import { requestSearchUsers } from "../../requests/github";
 import {
@@ -118,6 +119,10 @@ export default class SearchPage implements SearchPageContainer {
       }
 
       const inputValue = $input.value;
+
+      if (inputValue.length > 100) {
+        throw Error(ErrorText.SEARCH_NAME_LENGTH_LIMIT_EXCEEDED);
+      }
 
       if (this.mode === TABS[0]) {
         try {
